@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="publisher" content="Musa BAHAR" />
+    <link rel="publisher" href="https://musabahar.com.tr" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/css/app.v2.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/font-awesome-v4.7.0/css/font-awesome.min.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/simple-line-icons-v2.4.1/css/style.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/fontello/css/fontello.css?v=129")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/flaticon/css/style.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/flaticon2/css/style.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/jalert-v4.5.1/css/jalert.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/sweetalert/css/sweetalert.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/jbox-v0.3.2/css/jbox.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/select2-v4.0.3/css/select2.min.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/datetimepicker-v2.1.8/css/datetimepicker.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/bootstrap/css/bootstrap-datepicker.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/c3.js/css/c3.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/izimodal-v1.5.0/css/izimodal.min.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/jquery-confirm-v3.3.0/css/jquery-confirm.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/bootstrap-colorpicker-v2.5.2/css/min.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/lib/toastr/min.css?v=202106231030")' />
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/css/genel.css?v=202106231030")' />
+    <script type="text/javascript" src='@Url.Content("/wwwroot/js/jquery.min.js?v=202106231030")'></script>
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src='@Url.Content("/wwwroot/js/ie/respond.min.js?v=202106231030")'></script>
+        <script type="text/javascript" src='@Url.Content("/wwwroot/js/ie/html5.js?v=202106231030")'></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="sayfa-yukleniyor-1 dn">
+        <div class="yukleniyor-1">
+            <span class="nokta nokta-1"></span>
+            <span class="nokta nokta-2"></span>
+            <span class="nokta nokta-3"></span>
+            <span class="nokta nokta-4"></span>
+        </div>
+    </div>
+    <section class="hbox stretch">
+        <aside class="bg-dark aside-sm" id="nav">
+            <section class="vbox">
+                <header class="bg-black nav-bar" style="background-color:#fff !important;">
+                    <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav"><i class="fa fa-bars"></i></a>
+                    <a class="nav-brand"></a>
+                </header>
+                <section class="stretch">
+                    <section class="vbox">
+                        <section class="scrollable">
+                            <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px">
+                                <nav class="nav-primary hidden-xs" data-ride="collapse">
+                                    <ul class="nav jq-rastgele-degerler-ekle">
+                                        <li><a href="/kitaplar"><i class="flaticon-home"></i> <span>Kitaplar</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </aside>
+        <section id="content">
+            <section class="vbox">
+                @RenderBody()
+            </section>
+            <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+            <a id="jq-modal-iframe"></a>
+            <!-- Modal (BAŞLANGIÇ) -->
+            <a href="#jq-modal-popup1" class="jq-modal-popup1-tetikleyici" data-toggle="modal"></a>
+            <div class="modal fade" id="jq-modal-popup1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 class="m-t-none m-b jq-modal-popup1-baslik">Başlık</h3>
+                                    <div class=""></div>
+                                    <p class="jq-modal-popup1-icerik">İçerik</p>
+                                    <a class="jq-modal-popup1-kapat" data-dismiss="modal">kapat</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal (BİTİŞ) -->
+        </section>
+    </section>
+
+    <script type="text/javascript" src='@Url.Content("/wwwroot/js/app.v2.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/tinymce-v4.6.4/tinymce.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/tinymce-v4.6.4/jquery.tinymce.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/jalert-v4.5.1/js/jalert.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/jalert-v4.5.1/js/jalert-functions.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/sweetalert/js/sweetalert.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/jbox-v0.3.2/js/jbox.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/slimscroll-v1.3.0/js/jquery.slimscroll.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/js/jquery.upload.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/select2-v4.0.3/js/select2.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/datetimepicker-v2.1.8/js/datetimepicker.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/bootstrap/js/bootstrap-datepicker.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/chart.js/js/chart.bundle.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/c3.js/js/d3.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/c3.js/js/c3.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/raphael-v2.1.2/js/raphael-min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/morris.js-v0.5.1/js/morris.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/izimodal-v1.5.0/js/izimodal.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/jquery-confirm-v3.3.0/js/jquery-confirm.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/parsley.js-v1.1.16/js/parsley.min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/parsley.js-v1.1.16/js/parsley.extend.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/bootstrap-colorpicker-v2.5.2/js/min.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/toastr/toastr.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/lib/jquery-mask-plugin-v1.14.16/js/jquery.mask.js?v=202106231030")'></script>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/js/genel.js?v=202106231030")'></script>
+</body>
+</html>

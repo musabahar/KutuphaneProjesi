@@ -1,0 +1,27 @@
+﻿@{
+    string strTip = Context.Request.Query["tip"];
+    if (strTip == "kirmizi")
+    {
+        strTip = "alert-danger";
+    }
+    if (strTip == "mavi")
+    {
+        strTip = "alert-info";
+    }
+    if (strTip == "turuncu")
+    {
+        strTip = "alert-warning ";
+    }
+    if (strTip == "yesil")
+    {
+        strTip = "alert-success";
+    }
+    string strBilgi = Context.Request.Query["bilgi"];
+    if (!string.IsNullOrEmpty(strBilgi))
+    {
+        <div class="alert @strTip">
+        @Html.Raw(strBilgi)
+        </div>
+    }
+}
+

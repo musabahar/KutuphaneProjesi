@@ -1,0 +1,118 @@
+﻿@model Kutuphane.Web.Models.tblKitapHareketlerModel.fnGetir
+@using Kutuphane.Web
+@{
+    Fonksiyonlar fn = new Fonksiyonlar();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Hareket Detay";
+}
+<section class="scrollable wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb jq-rastgele-degerler-ekle">
+                <li><a href="/kitaplar"><i class="fa fa-home"></i> Kitaplar</a></li>
+                <li><i class="flaticon2-paper"></i> Hareket Detay</li>
+                <li></li>
+            </ul>
+            <div class="clearfix"></div>
+            @await Html.PartialAsync("inc_iys_uyari")
+            <div class="clearfix"></div>
+            <section class="panel">
+                <header class="panel-heading">
+                    <strong>Kitap Detayı</strong>
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal form-hareket-detay" method="post" action="/hareket-guncelle">
+                        @Html.AntiForgeryToken()
+                        @{
+                            if (Model == null || Model.entity == null)
+                            {
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger" role="alert">
+                                            Kayıtlarda böyle bir hareket bulunamadı.
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">ID</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" name="hareket_ID" value="@Model.entity.KitapHareketID" />
+                                        <p class="form-control-static">@Model.entity.KitapHareketID</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Ad</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.Ad</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Soyad</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.Soyad</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">TCNO</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.TCNo</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">EPosta</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.EPosta</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Telefon</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.Telefon</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Başlangıç Tarihi</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.BaslangicTarihi</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Bitiş Tarihi</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.BitisTarihi</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Teslim Tarihi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="teslim_tarihi" class="form-control jq-teslim-tarihi jq-datepicker" placeholder="Bitiş Tarihi" autocomplete="off" data-required="true" data-maxlength="10" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Günlük Ceza Tutarı</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.GunlukCezaTutari TL</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Toplam Ceza Tutarı</label>
+                                    <div class="col-sm-10">
+                                        <p class="form-control-static">@Model.entity.ToplamCezaTutari TL</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-sm-offset-2">
+                                        <input type="submit" value="Güncelle" class="btn btn-primary buton" />
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

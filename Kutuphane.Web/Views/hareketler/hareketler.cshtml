@@ -1,0 +1,139 @@
+﻿@model Kutuphane.Web.Models.tblKitapHareketlerModel.fnListele
+@using Kutuphane.Web
+@{
+    Fonksiyonlar fn = new Fonksiyonlar();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string strSayfa = Context.Request.Query["sayfa"];
+    long lngSayfa = 1;
+    int intGosterim_Adeti = fn.intGosterim_Adeti;
+    if (fn.fnSayisal_Mi(strSayfa))
+    {
+        lngSayfa = Convert.ToInt64(strSayfa);
+    }
+    string strQueryString = "";
+    ViewBag.Title = "Kitap Hareketleri - Sayfa: " + lngSayfa;
+    int intToplam_Kayit = 0;
+}
+<section class="scrollable wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb jq-rastgele-degerler-ekle">
+                <li><a href="/kitaplar"><i class="flaticon-home"></i> Kitaplar</a></li>
+                <li><i class="flaticon-list"></i> Kitap Hareketleri</li>
+            </ul>
+            <div class="clearfix"></div>
+            @await Html.PartialAsync("inc_iys_uyari")
+            <div class="clearfix"></div>
+            <section class="panel">
+                <header class="panel-heading dn">
+                    <div class="row">
+                        <div class="col-md-6 pull-right">
+                            <div class="btn-group pull-right jq-durumlar" data-toggle="buttons">
+                                <label class="btn btn-sm btn-dark bg-primary m-b jq-tumu" data-durum=""><i class="fa fa-check text-active"></i> Tümü</label>
+                                <label class="btn btn-sm btn-danger m-b jq-0" data-durum="0"><i class="fa fa-check text-active"></i> Okunmadı</label>
+                                <label class="btn btn-sm btn-success m-b jq-1" data-durum="1"><i class="fa fa-check text-active"></i> Okundu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </header>
+                <div class="table-responsive">
+                    <table class="table table-striped b-t text-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Başlık</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>T.C. No</th>
+                                <th>EPosta</th>
+                                <th>Telefon</th>
+                                <th>Başlangıç Tarihi</th>
+                                <th>Bitiş Tarihi</th>
+                                <th>Teslim Tarihi</th>
+                                <th>Toplam Ceza Tutarı</th>
+                                <th>Teslim Durumu</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                            if (Model != null)
+                            {
+                            intToplam_Kayit = Model.toplam_kayit_sayisi;
+                            if (intToplam_Kayit == 0)
+                            {
+                            <tr>
+                                <td colspan="6">
+                                    Bu kitaba ait hareket bulunamadı
+                                </td>
+                            </tr>
+                            }
+                            else
+                            {
+                            foreach (Kutuphane.Data.Entities.tblKitapHareketler nesne in Model.liste)
+                            {
+                        <tr data-satir="@nesne.KitapHareketID">
+                            <td>
+                                @nesne.KitapHareketID
+                            </td>
+                            <td>
+                                @fn.fnKitapBul(nesne.KitapID_FK)
+                            </td>
+                            <td>
+                                @nesne.Ad
+                            </td>
+                            <td>
+                                @nesne.Soyad
+                            </td>
+                            <td>
+                                @nesne.TCNo
+                            </td>
+                            <td>
+                                @nesne.EPosta
+                            </td>
+                            <td>
+                                @nesne.Telefon
+                            </td>
+                            <td>
+                                @Html.Raw(fn.fnTarih(nesne.BaslangicTarihi, false))
+                            </td>
+                            <td>
+                                @Html.Raw(fn.fnTarih(nesne.BitisTarihi, false))
+                            </td>
+                            <td>
+                                @Html.Raw(fn.fnTarih(nesne.TeslimTarihi, false))
+                            </td>
+                            <td>
+                                @nesne.ToplamCezaTutari
+                            </td>
+                            <td>
+                                @Html.Raw(fn.fnTeslim_Durumu(nesne.Durum))
+                            </td>
+                            <td>
+                                <a href="/hareket-detay?hareket_ID=@nesne.KitapHareketID"><i class="fa fa-edit"></i> Detay</a>
+                            </td>
+                        </tr>
+                            }
+                            }
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6 jq-rastgele-degerler-ekle text-left">
+                            @Html.Raw(fn.fnSayfalama(strQueryString, lngSayfa, intToplam_Kayit, intGosterim_Adeti))
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="p-t10 p-b10">
+                                Toplam Kayıt: @intToplam_Kayit
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </div>
+    </div>
+</section>

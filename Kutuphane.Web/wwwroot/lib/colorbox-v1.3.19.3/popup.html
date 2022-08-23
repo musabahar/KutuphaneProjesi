@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/colorbox.css" type="text/css" rel="stylesheet" media="all" />
+    <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="js/colorbox.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            // İnline Popup
+            jQuery(".colorbox-inline-link").colorbox({ inline: true, width: "50%" });
+
+            // Vimeo Popup Frame
+            jQuery(".colorbox-vimeo-frame").colorbox({ iframe: true, innerWidth: 500, innerHeight: 409 });
+
+            // Resim
+            jQuery(".colorbox-resim").colorbox({});
+
+            // Grup Resim
+            jQuery(".colorbox-grup-resim").colorbox({ rel: 'colorbox-grup-resim', slideshow: true, speed: 600 });
+        });
+    </script>
+</head>
+<body>
+    <div style="display:none;">
+        <div id="colorbox-inline-icerik">
+            <p>
+                İşbu HRC Abonelik sözleşmesindeki boşlukları eksiksiz olarak dolduruz ve çıktısını alarak imzalayınız ve <strong>abonelik@hrctelekom.com</strong> email adresine tarayınız aracılığı ile email olarak veya <strong>0312 707 1 707</strong> nolu telefona fax gönderiniz. Ayrıca belgenin aslını 3 gün içerisinde kargo aracılığı ile gönderiniz. <strong>HRC Telekom</strong>'u tercih ettiğiniz için teşekkürler.
+            </p>
+        </div>
+    </div>
+    <a href="#colorbox-inline-icerik" class="colorbox-inline-link" title="İnline Popup Açıldı">inline popup aç</a>
+    <br />
+    <br />
+    <a href="http://player.vimeo.com/video/116991" class="colorbox-vimeo-frame" title="Vimeo Popup Frame Açıldı">vimeo frame aç</a>
+    <br />
+    <br />
+    <a href="http://www.jacklmoore.com/colorbox/content/ohoopee1.jpg" class="colorbox-resim" title="Resim Açıldı">resim aç</a>
+    <br />
+    <br />
+    <a href="http://www.jacklmoore.com/colorbox/content/ohoopee1.jpg" class="colorbox-grup-resim" title="Grup Resim 1">Grup Resim 1</a>
+    <br />
+    <a href="http://www.jacklmoore.com/colorbox/content/ohoopee2.jpg" class="colorbox-grup-resim" title="Grup Resim 2">Grup Resim 2</a>
+    <br />
+    <a href="http://www.jacklmoore.com/colorbox/content/ohoopee3.jpg" class="colorbox-grup-resim" title="Grup Resim 3">Grup Resim 3</a>
+</body>
+</html>

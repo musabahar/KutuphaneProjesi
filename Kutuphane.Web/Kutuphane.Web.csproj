@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\redactor-v8.2.2\json\images\" />
+    <Folder Include="wwwroot\lib\redactor\json\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kutuphane.Data\Kutuphane.Data.csproj" />
+  </ItemGroup>
+
+</Project>

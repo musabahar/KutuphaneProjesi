@@ -1,0 +1,114 @@
+﻿@model Kutuphane.Web.Models.tblKitaplarModel.fnListele
+@using Kutuphane.Web
+@{
+    Fonksiyonlar fn = new Fonksiyonlar();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string strSayfa = Context.Request.Query["sayfa"];
+    long lngSayfa = 1;
+    int intGosterim_Adeti = fn.intGosterim_Adeti;
+    if (fn.fnSayisal_Mi(strSayfa))
+    {
+        lngSayfa = Convert.ToInt64(strSayfa);
+    }
+    string strQueryString = "";
+    ViewBag.Title = "Kitaplar - Sayfa: " + lngSayfa;
+    int intToplam_Kayit = 0;
+}
+<section class="scrollable wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb jq-rastgele-degerler-ekle">
+                <li><a href="/kitaplar"><i class="flaticon-home"></i> Kitaplar</a></li>
+            </ul>
+            <div class="clearfix"></div>
+            @await Html.PartialAsync("inc_iys_uyari")
+            <div class="clearfix"></div>
+            <section class="panel">
+                <header class="panel-heading dn">
+                    <div class="row">
+                        <div class="col-md-6 pull-right">
+                            <div class="btn-group pull-right jq-durumlar" data-toggle="buttons">
+                                <label class="btn btn-sm btn-dark bg-primary m-b jq-tumu" data-durum=""><i class="fa fa-check text-active"></i> Tümü</label>
+                                <label class="btn btn-sm btn-danger m-b jq-0" data-durum="0"><i class="fa fa-check text-active"></i> Okunmadı</label>
+                                <label class="btn btn-sm btn-success m-b jq-1" data-durum="1"><i class="fa fa-check text-active"></i> Okundu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </header>
+                <div class="table-responsive">
+                    <table class="table table-striped b-t text-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Başlık</th>
+                                <th>ISBN</th>
+                                <th>Kapak Fiyatı</th>
+                                <th>Ödünç Durumu</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model != null)
+                                {
+                                    intToplam_Kayit = Model.toplam_kayit_sayisi;
+                                    if (intToplam_Kayit == 0)
+                                    {
+                                        <tr>
+                                            <td colspan="6">
+                                                Kitap bulunamadı
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        foreach (Kutuphane.Data.Entities.tblKitaplar nesne in Model.liste)
+                                        {
+                                            <tr data-satir="@nesne.KitapID">
+                                                <td>
+                                                    @nesne.KitapID
+                                                </td>
+                                                <td>
+                                                    @nesne.Baslik
+                                                </td>
+                                                <td>
+                                                    @nesne.ISBN
+                                                </td>
+                                                <td>
+                                                    @nesne.KapakFiyati
+                                                </td>
+                                                <td>
+                                                    @fn.fnSonHareket(nesne.KitapID)
+                                                </td>
+                                                <td>
+                                                    @Html.Raw(fn.fnAktif_Pasif(nesne.Durum))
+                                                </td>
+                                                <td>
+                                                    <a href="/kitap-detay?kitap_ID=@nesne.KitapID"><i class="fa fa-edit"></i> Ödünç Ver</a> | <a href="/hareketler?kitap_ID=@nesne.KitapID"><i class="fa fa-list"></i> Ödünç Hareketleri</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6 jq-rastgele-degerler-ekle text-left">
+                            @Html.Raw(fn.fnSayfalama(strQueryString, lngSayfa, intToplam_Kayit, intGosterim_Adeti))
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="p-t10 p-b10">
+                                Toplam Kayıt: @intToplam_Kayit
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+        </div>
+    </div>
+</section>
